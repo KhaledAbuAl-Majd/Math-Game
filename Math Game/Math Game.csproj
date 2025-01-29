@@ -95,5 +95,14 @@
   <ItemGroup>
     <None Include="Resources\start %281%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3198228_40273.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MathGenius %283%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24644996_Tiny students with huge sign pi flat vector illustration.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -20,17 +20,15 @@ namespace Math_Game
         stGameStatus GameStatus;
         enum enLevel { Easy,Midium,Hard,Mix};
         enum enOperator {Add,Subtract,Multiplay, Divide,Mix}
-
-        enum enGender { Male,Female}
         struct stGameStatus
         {
             public enLevel Level;
             public enOperator Operator;
-            public enGender Gender;
+            public sbyte TimePerQuestion;     
             public sbyte Rounds;
         }  
 
-        void ComboBoxValidating_ErrorProvider(object sender,CancelEventArgs e,string Message)
+        void ComboBoxValidating_ErrorProvider(object sender, CancelEventArgs e, string Message)
         {
             if (string.IsNullOrEmpty(((ComboBox)sender).Text))
             {
@@ -45,6 +43,21 @@ namespace Math_Game
             }
         }
 
+        void NumericUpDownValidating_ErrorProvider(object sender, CancelEventArgs e, string Message)
+        {
+            if (((NumericUpDown)sender).Value == 0)
+            {
+                e.Cancel = true;
+                ((NumericUpDown)sender).Focus();
+                errorProvider1.SetError((NumericUpDown)sender, Message);
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError((NumericUpDown)sender, "");
+            }
+        }
+
         float CalculateProgressParValue(sbyte ItemNumber = 4)
         {         
             sbyte CompleteItemNumber = 0;
@@ -55,7 +68,7 @@ namespace Math_Game
             if (!string.IsNullOrEmpty(cbOperator.Text))
                 CompleteItemNumber++;
 
-            if (!string.IsNullOrEmpty(cmGender.Text))
+            if (nudTimePerQuestion.Value > 0)
                 CompleteItemNumber++;           
 
             if (nudRounds.Value > 0)
@@ -97,17 +110,6 @@ namespace Math_Game
             ComboBoxValidating_ErrorProvider(sender, e, "Operator should have a Value1");
         }
 
-        private void cmGender_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GameStatus.Gender = (enGender)((ComboBox)sender).SelectedIndex;
-            changeProgressBarValue();
-        }
-
-        private void cmGender_Validating(object sender, CancelEventArgs e)
-        {
-            ComboBoxValidating_ErrorProvider(sender, e, "Gender Should have a Value!");
-        }
-
         private void nudRounds_ValueChanged(object sender, EventArgs e)
         {
             GameStatus.Rounds = Convert.ToSByte(nudRounds.Value);
@@ -116,17 +118,7 @@ namespace Math_Game
 
         private void nudRounds_Validating(object sender, CancelEventArgs e)
         {
-            if (((NumericUpDown)sender).Value == 0)
-            {
-                e.Cancel = true;
-                ((NumericUpDown)sender).Focus();
-                errorProvider1.SetError((NumericUpDown)sender, "Rounds should be a positive number!");
-            }
-            else
-            {
-                e.Cancel = false;
-                errorProvider1.SetError((NumericUpDown)sender, "");
-            }
+            NumericUpDownValidating_ErrorProvider(sender, e, "Rounds should be a positive number!");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -135,6 +127,22 @@ namespace Math_Game
                 return;
 
             tabControl1.SelectedIndex = 1;
+        }
+
+        private void nudTimePerQuestion_ValueChanged(object sender, EventArgs e)
+        {
+            GameStatus.TimePerQuestion = Convert.ToSByte(nudTimePerQuestion.Value);
+            changeProgressBarValue();
+        }
+
+        private void nudTimePerQuestion_Validating(object sender, CancelEventArgs e)
+        {
+            NumericUpDownValidating_ErrorProvider(sender, e, "Time/Question Should be From 5 ,To 20!");
+        }
+
+        private void frmMathGame_Load(object sender, EventArgs e)
+        {
+            changeProgressBarValue();
         }
     }
 }
