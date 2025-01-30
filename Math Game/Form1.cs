@@ -383,7 +383,15 @@ namespace Math_Game
             if (Game.IsGameOver|| string.IsNullOrWhiteSpace(txtAnswer.Text))
                 return;
 
-            Question.PlayAnswer = Convert.ToSingle(txtAnswer.Text.Trim());
+            try
+            {
+                Question.PlayAnswer = Convert.ToSingle(txtAnswer.Text.Trim());
+            }
+            catch
+            {
+                MessageBox.Show("Only Numbers , '+','-'","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
             CheckAnswer();          
             CheckGameOver();
         }
