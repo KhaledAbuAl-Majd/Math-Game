@@ -176,28 +176,28 @@ namespace Math_Game
             lblLevel.Text = Game.Level.ToString();
         }
 
-        void ChangeOperatorLabel()
+        void ChangeOperatorLabel(Label label)
         {
             switch (Game.Operator)
             {
                 case enOperator.Add:
-                    lblOperator.Text = "+";
+                    label.Text = "+";
                     break;
 
                 case enOperator.Subtract:
-                    lblOperator.Text = "-";
+                    label.Text = "-";
                     break;
 
                 case enOperator.Multiplay:
-                    lblOperator.Text = "*";
+                    label.Text = "*";
                     break;
 
                 case enOperator.Divide:
-                    lblOperator.Text = "/";
+                    label.Text = "/";
                     break;
 
                 case enOperator.Mix:
-                    lblOperator.Text = "MIX";
+                    label.Text = "MIX";
                     break;
             }
         }
@@ -287,7 +287,7 @@ namespace Math_Game
 
         void WrongAnswerMessage()
         {
-            MessageBox.Show("Wrong Answer,Go On!", "Answer Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Wrong Answer,Go On!", "Answer Result", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         void StopTimer()
@@ -298,9 +298,6 @@ namespace Math_Game
         void NextRoundTurn(bool IsGameOver = false)
         {
             StopTimer();
-            txtAnswer.Enabled = false;
-            btnCheckAsnwer.Enabled = false;
-            btnDonotKnow.Enabled = false;
 
             if (IsGameOver)
             {
@@ -312,6 +309,11 @@ namespace Math_Game
                 btnNextRound.Enabled = true;
                 this.AcceptButton = btnNextRound;
             }
+
+            txtAnswer.Enabled = false;
+            btnCheckAsnwer.Enabled = false;
+            btnDonotKnow.Enabled = false;
+
         }
 
         void Reset_StartTimer()
@@ -345,7 +347,7 @@ namespace Math_Game
 
         void GameOverMessage()
         {
-            MessageBox.Show("Game Over", "Game Status", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            MessageBox.Show("Game Over", "Game Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         void GameOver()
@@ -409,7 +411,7 @@ namespace Math_Game
             Game.GameMode = enGameMode.Play;
             ChangePlay_Stop_ResetButtonImageAndToolTip(1, "Press To Stop");
             ChangeLevelLabel();
-            ChangeOperatorLabel();     
+            ChangeOperatorLabel(lblOperator);     
         }
 
         enum enResumeMode {AnswerTurn,NextRoundTurn }
@@ -450,6 +452,7 @@ namespace Math_Game
         void ResetVariablesValue()
         {
             Game.CurrentRound = 0;
+            Game.RightAnswers = 0;
 
         }
 
@@ -488,11 +491,22 @@ namespace Math_Game
             tabControl1.SelectedIndex = 1;
             this.AcceptButton = btnPlay_Stop_Reset;
         }
+        
+        void CreateResults()
+        {
+            lblResultRound.Text = Game.Rounds.ToString();
+            lblResultLevel.Text = Game.Level.ToString();
+            ChangeOperatorLabel(lblResultOperator);
+            //lblResultOperator.Text = Game.Operator.ToString();
+            lblResultWinTime.Text = Game.RightAnswers.ToString();
+            lblResultFailTime.Text = (Game.Rounds - Game.RightAnswers).ToString();
+        }
 
         void GoToResultPage()
         {
+            CreateResults();
             tabControl1.SelectedIndex = 2;
-            
+            this.AcceptButton = btnBackToPlayPage;
         }
 
         private void cbLevel_SelectedIndexChanged(object sender, EventArgs e)
@@ -589,7 +603,9 @@ namespace Math_Game
         {
             Game.TimeLeft--;
 
-            ChangeTimeLeftLabel();
+            if (Game.TimeLeft >= 0)
+                ChangeTimeLeftLabel();
+
 
             if (Game.TimeLeft == 0)
             {
@@ -634,6 +650,25 @@ namespace Math_Game
                 }
             }          
             
+        }
+
+        private void btnBackToPlayPage_Click(object sender, EventArgs e)
+        {
+            GoToPlayPage();
+        }
+
+        private void btnBackToStartPage_Click(object sender, EventArgs e)
+        {
+            GoToStartPage();
+        }
+
+        private void pbExit_Click(object sender, EventArgs e)
+        {
+           if( MessageBox.Show("Are you Sure You Want To Leave","Confirm",MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+            {
+                this.Close();
+            }
         }
     }
 }

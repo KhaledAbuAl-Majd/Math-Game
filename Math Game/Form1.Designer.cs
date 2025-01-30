@@ -53,7 +53,7 @@
             this.btnDonotKnow = new System.Windows.Forms.Button();
             this.lblOperator = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.pbBack = new System.Windows.Forms.PictureBox();
+            this.pbBackToStartPage = new System.Windows.Forms.PictureBox();
             this.btnResult = new System.Windows.Forms.Button();
             this.btnNextRound = new System.Windows.Forms.Button();
             this.imlPlay_Stop_Next_Reset = new System.Windows.Forms.ImageList(this.components);
@@ -79,9 +79,23 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtAnswer = new System.Windows.Forms.TextBox();
             this.tabResult = new System.Windows.Forms.TabPage();
+            this.btnBackToPlayPage = new System.Windows.Forms.Button();
+            this.pbExit = new System.Windows.Forms.PictureBox();
+            this.btnBackToStartPage = new System.Windows.Forms.Button();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblResultRound = new System.Windows.Forms.Label();
+            this.lblResultLevel = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lblResultOperator = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblResultWinTime = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lblResultFailTime = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabStart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -93,13 +107,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudRounds)).BeginInit();
             this.tabPlay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBackToStartPage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOperator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.tabResult.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbExit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -164,6 +181,7 @@
             0,
             0});
             this.nudTimePerQuestion.Name = "nudTimePerQuestion";
+            this.toolTip1.SetToolTip(this.nudTimePerQuestion, resources.GetString("nudTimePerQuestion.ToolTip"));
             this.nudTimePerQuestion.Value = new decimal(new int[] {
             5,
             0,
@@ -291,7 +309,7 @@
             this.tabPlay.Controls.Add(this.btnDonotKnow);
             this.tabPlay.Controls.Add(this.lblOperator);
             this.tabPlay.Controls.Add(this.label8);
-            this.tabPlay.Controls.Add(this.pbBack);
+            this.tabPlay.Controls.Add(this.pbBackToStartPage);
             this.tabPlay.Controls.Add(this.btnResult);
             this.tabPlay.Controls.Add(this.btnNextRound);
             this.tabPlay.Controls.Add(this.btnPlay_Stop_Reset);
@@ -345,15 +363,15 @@
             this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.label8.Name = "label8";
             // 
-            // pbBack
+            // pbBackToStartPage
             // 
-            this.pbBack.BackColor = System.Drawing.Color.Transparent;
-            this.pbBack.Cursor = System.Windows.Forms.Cursors.Hand;
-            resources.ApplyResources(this.pbBack, "pbBack");
-            this.pbBack.Name = "pbBack";
-            this.pbBack.TabStop = false;
-            this.toolTip1.SetToolTip(this.pbBack, resources.GetString("pbBack.ToolTip"));
-            this.pbBack.Click += new System.EventHandler(this.pbBack_Click);
+            this.pbBackToStartPage.BackColor = System.Drawing.Color.Transparent;
+            this.pbBackToStartPage.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.pbBackToStartPage, "pbBackToStartPage");
+            this.pbBackToStartPage.Name = "pbBackToStartPage";
+            this.pbBackToStartPage.TabStop = false;
+            this.toolTip1.SetToolTip(this.pbBackToStartPage, resources.GetString("pbBackToStartPage.ToolTip"));
+            this.pbBackToStartPage.Click += new System.EventHandler(this.pbBack_Click);
             // 
             // btnResult
             // 
@@ -532,9 +550,59 @@
             // 
             // tabResult
             // 
+            this.tabResult.BackColor = System.Drawing.Color.White;
+            this.tabResult.Controls.Add(this.lblResultFailTime);
+            this.tabResult.Controls.Add(this.label16);
+            this.tabResult.Controls.Add(this.lblResultWinTime);
+            this.tabResult.Controls.Add(this.label14);
+            this.tabResult.Controls.Add(this.lblResultOperator);
+            this.tabResult.Controls.Add(this.label10);
+            this.tabResult.Controls.Add(this.lblResultLevel);
+            this.tabResult.Controls.Add(this.label13);
+            this.tabResult.Controls.Add(this.lblResultRound);
+            this.tabResult.Controls.Add(this.label7);
+            this.tabResult.Controls.Add(this.btnBackToPlayPage);
+            this.tabResult.Controls.Add(this.pbExit);
+            this.tabResult.Controls.Add(this.btnBackToStartPage);
+            this.tabResult.Controls.Add(this.pictureBox12);
             resources.ApplyResources(this.tabResult, "tabResult");
             this.tabResult.Name = "tabResult";
-            this.tabResult.UseVisualStyleBackColor = true;
+            // 
+            // btnBackToPlayPage
+            // 
+            this.btnBackToPlayPage.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnBackToPlayPage, "btnBackToPlayPage");
+            this.btnBackToPlayPage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBackToPlayPage.Name = "btnBackToPlayPage";
+            this.toolTip1.SetToolTip(this.btnBackToPlayPage, resources.GetString("btnBackToPlayPage.ToolTip"));
+            this.btnBackToPlayPage.UseVisualStyleBackColor = false;
+            this.btnBackToPlayPage.Click += new System.EventHandler(this.btnBackToPlayPage_Click);
+            // 
+            // pbExit
+            // 
+            this.pbExit.BackColor = System.Drawing.Color.Transparent;
+            this.pbExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.pbExit, "pbExit");
+            this.pbExit.Name = "pbExit";
+            this.pbExit.TabStop = false;
+            this.toolTip1.SetToolTip(this.pbExit, resources.GetString("pbExit.ToolTip"));
+            this.pbExit.Click += new System.EventHandler(this.pbExit_Click);
+            // 
+            // btnBackToStartPage
+            // 
+            this.btnBackToStartPage.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnBackToStartPage.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.btnBackToStartPage, "btnBackToStartPage");
+            this.btnBackToStartPage.Name = "btnBackToStartPage";
+            this.toolTip1.SetToolTip(this.btnBackToStartPage, resources.GetString("btnBackToStartPage.ToolTip"));
+            this.btnBackToStartPage.UseVisualStyleBackColor = false;
+            this.btnBackToStartPage.Click += new System.EventHandler(this.btnBackToStartPage_Click);
+            // 
+            // pictureBox12
+            // 
+            resources.ApplyResources(this.pictureBox12, "pictureBox12");
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.TabStop = false;
             // 
             // errorProvider1
             // 
@@ -544,6 +612,76 @@
             // 
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Name = "label7";
+            // 
+            // lblResultRound
+            // 
+            resources.ApplyResources(this.lblResultRound, "lblResultRound");
+            this.lblResultRound.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.lblResultRound.ForeColor = System.Drawing.Color.White;
+            this.lblResultRound.Name = "lblResultRound";
+            // 
+            // lblResultLevel
+            // 
+            resources.ApplyResources(this.lblResultLevel, "lblResultLevel");
+            this.lblResultLevel.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.lblResultLevel.ForeColor = System.Drawing.Color.White;
+            this.lblResultLevel.Name = "lblResultLevel";
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Name = "label13";
+            // 
+            // lblResultOperator
+            // 
+            resources.ApplyResources(this.lblResultOperator, "lblResultOperator");
+            this.lblResultOperator.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.lblResultOperator.ForeColor = System.Drawing.Color.White;
+            this.lblResultOperator.Name = "lblResultOperator";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Name = "label10";
+            // 
+            // lblResultWinTime
+            // 
+            resources.ApplyResources(this.lblResultWinTime, "lblResultWinTime");
+            this.lblResultWinTime.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.lblResultWinTime.ForeColor = System.Drawing.Color.White;
+            this.lblResultWinTime.Name = "lblResultWinTime";
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Name = "label14";
+            // 
+            // lblResultFailTime
+            // 
+            resources.ApplyResources(this.lblResultFailTime, "lblResultFailTime");
+            this.lblResultFailTime.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.lblResultFailTime.ForeColor = System.Drawing.Color.White;
+            this.lblResultFailTime.Name = "lblResultFailTime";
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.label16.ForeColor = System.Drawing.Color.White;
+            this.label16.Name = "label16";
             // 
             // frmMathGame
             // 
@@ -566,13 +704,17 @@
             this.tabPlay.ResumeLayout(false);
             this.tabPlay.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBackToStartPage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOperator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            this.tabResult.ResumeLayout(false);
+            this.tabResult.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbExit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
@@ -626,13 +768,27 @@
         private System.Windows.Forms.Button btnCheckAsnwer;
         private System.Windows.Forms.Button btnResult;
         private System.Windows.Forms.Button btnNextRound;
-        private System.Windows.Forms.PictureBox pbBack;
+        private System.Windows.Forms.PictureBox pbBackToStartPage;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblOperator;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnDonotKnow;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.TextBox txtAnswer;
+        private System.Windows.Forms.Button btnBackToStartPage;
+        private System.Windows.Forms.PictureBox pictureBox12;
+        private System.Windows.Forms.PictureBox pbExit;
+        private System.Windows.Forms.Button btnBackToPlayPage;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblResultFailTime;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblResultWinTime;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblResultOperator;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblResultLevel;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblResultRound;
     }
 }
 
