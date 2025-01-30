@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Math_Game.Properties;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Math_Game
 {
@@ -17,15 +21,34 @@ namespace Math_Game
             InitializeComponent();
         }
    
-        stGameStatus GameStatus;
-        enum enLevel { Easy,Midium,Hard,Mix};
+        stGame Game;
+        stQuestion Question;
+        enum enLevel { EASY,MEDIUM,HARD,MIX};
         enum enOperator {Add,Subtract,Multiplay, Divide,Mix}
-        struct stGameStatus
+
+        enum enGameMode {Start,Play,Stop,Reset}
+        struct stQuestion
+        {
+            public float Number1;
+            public float Number2;
+            public enOperator Operator;
+            public enLevel Level;
+            public float RightAnswer;
+            public Nullable<float> PlayAnswer;
+        }
+        struct stGame
         {
             public enLevel Level;
             public enOperator Operator;
+            public enGameMode GameMode;
             public sbyte TimePerQuestion;     
             public sbyte Rounds;
+            public sbyte CurrentRound;
+            public sbyte GameTime;
+            public sbyte TimeLeft;
+            public bool IsGameOver;
+            public sbyte RightAnswers;
+            public enResumeMode ResumeMode;
         }  
 
         void ComboBoxValidating_ErrorProvider(object sender, CancelEventArgs e, string Message)
@@ -88,9 +111,393 @@ namespace Math_Game
             }        
         }
 
+        void GenerateNumbers(short MinumumNumber, short MaximumNumber,sbyte Divide_MinumuNumber,sbyte Divide_MaximumNumber)
+        {
+            Random rand = new Random();
+
+            Question.Number2 = rand.Next(MinumumNumber,MaximumNumber);
+
+            if (Question.Operator != enOperator.Divide)
+                Question.Number1 = rand.Next(MinumumNumber,MaximumNumber);
+            else
+                Question.Number1 = Question.Number2 * rand.Next(Divide_MinumuNumber, Divide_MaximumNumber);
+
+            //this to solve Fraction Problem
+        }
+
+        void MakeNumbersByLevel()
+        {
+            Question.Level = Game.Level;
+
+            Random rand = new Random();
+
+            if (Question.Level == enLevel.MIX)
+            {
+                Question.Level = (enLevel)rand.Next(3);
+            }
+
+            switch (Question.Level)
+            {
+                case enLevel.EASY:
+
+                    GenerateNumbers(1, 21, 1, 3);
+                    break;
+
+                case enLevel.MEDIUM:
+
+                    GenerateNumbers(21, 51, 1, 6);
+                    break;
+
+                case enLevel.HARD:
+
+                    GenerateNumbers(51, 101, 1, 11);
+                    break;
+            }
+        }
+
+        void ChangeOperatorImage(Image image)
+        {
+            pbOperator.Image = image;
+        }
+
+        void ChangeNumbersLabel()
+        {
+            lblNumber1.Text = Question.Number1.ToString();
+            lblNumber2.Text = Question.Number2.ToString();
+        }
+
+        void ChangeRoundLable()
+        {
+            lblRound.Text = Game.CurrentRound + "/" + Game.Rounds;
+        }
+
+        void ChangeLevelLabel()
+        {
+            lblLevel.Text = Game.Level.ToString();
+        }
+
+        void ChangeOperatorLabel()
+        {
+            switch (Game.Operator)
+            {
+                case enOperator.Add:
+                    lblOperator.Text = "+";
+                    break;
+
+                case enOperator.Subtract:
+                    lblOperator.Text = "-";
+                    break;
+
+                case enOperator.Multiplay:
+                    lblOperator.Text = "*";
+                    break;
+
+                case enOperator.Divide:
+                    lblOperator.Text = "/";
+                    break;
+
+                case enOperator.Mix:
+                    lblOperator.Text = "MIX";
+                    break;
+            }
+        }
+
+        void ChangeGameTimeLabel()
+        {
+            lblGameTime.Text = Game.GameTime.ToString();
+        }
+
+        void ChangeTimeLeftLabel()
+        {
+            lblTimeLeft.Text = Game.TimeLeft.ToString();
+        }
+        void ChangeQuestionToUser(Image image)
+        {
+            ChangeNumbersLabel();
+            ChangeOperatorImage(image);
+        }
+
+        void ChangeRightAndPlayerAnswerLabel()
+        {
+            lblRightAnswers.Text = Question.RightAnswer.ToString();
+            lblPlayerAnswer.Text = Question.PlayAnswer.ToString();
+        }
+
+        void MakeQuestion()
+        {
+            Question.Operator = Game.Operator;
+
+            if (Question.Operator == enOperator.Mix)
+            {
+                Random rand = new Random();
+
+                Question.Operator = (enOperator)rand.Next(4);
+            }
+
+            MakeNumbersByLevel();
+
+            switch (Question.Operator)
+            {
+                case enOperator.Add:
+                    ChangeQuestionToUser(Resources.add);
+                    Question.RightAnswer = Question.Number1 + Question.Number2;
+                    break;
+
+                case enOperator.Subtract:
+                    ChangeQuestionToUser(Resources.minus);
+                    Question.RightAnswer = Question.Number1 - Question.Number2;
+                    break;
+
+                case enOperator.Multiplay:
+                    ChangeQuestionToUser(Resources.Multiply);
+                    Question.RightAnswer = Question.Number1 * Question.Number2;
+                    break;
+
+                case enOperator.Divide:
+                    ChangeQuestionToUser(Resources.divide);
+                    Question.RightAnswer = Question.Number1 / Question.Number2;
+                    break;
+            }
+        }
+
+        void CheckGameOver()
+        {
+            if (Game.Rounds == Game.CurrentRound)
+                GameOver();
+        }
+
+        void NextQuestion()
+        {
+            CheckGameOver();
+
+            if (Game.IsGameOver)
+                return;
+           
+            AnswerTurn();
+            Game.CurrentRound++;
+            ChangeRoundLable();
+            MakeQuestion();
+            txtAnswer.Clear();     
+        }
+
+        void RightAnswerMessage()
+        {
+            MessageBox.Show("Right Answer,Bravooo", "Answer Result", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        }
+
+        void WrongAnswerMessage()
+        {
+            MessageBox.Show("Wrong Answer,Go On!", "Answer Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        void StopTimer()
+        {
+            timer1.Stop();
+        }
+
+        void NextRoundTurn(bool IsGameOver = false)
+        {
+            StopTimer();
+            txtAnswer.Enabled = false;
+            btnCheckAsnwer.Enabled = false;
+            btnDonotKnow.Enabled = false;
+
+            if (IsGameOver)
+            {
+                btnNextRound.Enabled = false;
+                this.AcceptButton = btnPlay_Stop_Reset;
+            }
+            else
+            {
+                btnNextRound.Enabled = true;
+                this.AcceptButton = btnNextRound;
+            }
+        }
+
+        void Reset_StartTimer()
+        {
+            ResetTime();
+            ChangeTimeLeftLabel();
+            Resume_StartTimer();
+            ChangeGameTimeLabel();
+        }
+
+        void Resume_StartTimer()
+        {
+            timer1.Start();
+        }
+
+        void AnswerTurn()
+        {
+            Resume_StartTimer();
+            txtAnswer.Enabled = true;
+            btnCheckAsnwer.Enabled = true;
+            btnDonotKnow.Enabled = true;
+            btnNextRound.Enabled = false;
+            txtAnswer.Focus();
+            this.AcceptButton = btnCheckAsnwer;
+        }
+
+        void ResetTime()
+        {
+            Game.TimeLeft = Game.GameTime;
+        }
+
+        void GameOverMessage()
+        {
+            MessageBox.Show("Game Over", "Game Status", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        }
+
+        void GameOver()
+        {
+            Game.IsGameOver = true;
+            GameOverMessage();
+            NextRoundTurn(Game.IsGameOver);
+            Game.GameMode = enGameMode.Reset;
+            ChangePlay_Stop_ResetButtonImageAndToolTip(3, "Press To Reset");
+            btnResult.Enabled = true;
+        }
+
+        void CheckAnswer()
+        {
+            NextRoundTurn();
+
+            if (Question.PlayAnswer == Question.RightAnswer)
+            {
+                Game.RightAnswers++;
+                RightAnswerMessage();
+            }
+            else
+            {
+                WrongAnswerMessage(); 
+            }
+
+            ChangeRightAndPlayerAnswerLabel();
+        }
+
+        void CheckAnswerButton()
+        {
+
+            if (Game.IsGameOver|| string.IsNullOrWhiteSpace(txtAnswer.Text))
+                return;
+
+            Question.PlayAnswer = Convert.ToSingle(txtAnswer.Text.Trim());
+            CheckAnswer();          
+            CheckGameOver();
+        }
+
+        void DonotKnow()
+        {
+            Question.PlayAnswer = null;
+            ChangeRightAndPlayerAnswerLabel();
+            NextRoundTurn();
+            CheckGameOver();
+        }
+
+        void ChangePlay_Stop_ResetButtonImageAndToolTip(sbyte ImageIndex,string Message)
+        {
+            btnPlay_Stop_Reset.ImageIndex = ImageIndex;
+            toolTip1.SetToolTip(btnPlay_Stop_Reset, Message);
+        }
+
+        void Play()
+        {     
+            Game.GameTime = Convert.ToSByte(Game.Rounds * Game.TimePerQuestion);
+            Reset_StartTimer();
+            Game.IsGameOver = false;
+            NextQuestion();
+            Game.GameMode = enGameMode.Play;
+            ChangePlay_Stop_ResetButtonImageAndToolTip(1, "Press To Stop");
+            ChangeLevelLabel();
+            ChangeOperatorLabel();     
+        }
+
+        enum enResumeMode {AnswerTurn,NextRoundTurn }
+
+        void Stop()
+        {
+            Game.GameMode = enGameMode.Stop;
+            StopTimer();
+
+            if (btnNextRound.Enabled)
+            {
+                btnNextRound.Enabled = false; 
+                Game.ResumeMode = enResumeMode.NextRoundTurn;
+            }
+            else
+            {
+                NextRoundTurn(true);
+                Game.ResumeMode = enResumeMode.AnswerTurn;
+            }
+
+            ChangePlay_Stop_ResetButtonImageAndToolTip(0, "Press To Resume");
+            this.AcceptButton = btnPlay_Stop_Reset;
+        }
+
+        void ResetLabels()
+        {
+            lblRound.Text = "?";
+            lblLevel.Text = "?";
+            lblOperator.Text = "?";
+            lblGameTime.Text = "?";
+            lblTimeLeft.Text = "?";
+            lblRightAnswers.Text =null;
+            lblPlayerAnswer.Text = null;
+            txtAnswer.Clear();
+            pbOperator.Image = Resources.question_mark_96;
+        }
+
+        void ResetVariablesValue()
+        {
+            Game.CurrentRound = 0;
+
+        }
+
+        void Reset()
+        {
+            ResetLabels();
+            ResetVariablesValue();
+            Game.GameMode = enGameMode.Start;
+            ChangePlay_Stop_ResetButtonImageAndToolTip(0, "Press To Play");
+            Game.IsGameOver = true; 
+            NextRoundTurn(true);
+            btnResult.Enabled = false;
+           
+        }
+
+        void Resume()
+        { 
+            Game.GameMode = enGameMode.Play;
+
+            if (Game.ResumeMode == enResumeMode.NextRoundTurn)
+                btnNextRound.Enabled = true;
+            else
+                AnswerTurn();
+
+            ChangePlay_Stop_ResetButtonImageAndToolTip(1, "Press To Stop!");
+        }
+
+        void GoToStartPage()
+        {
+            tabControl1.SelectedIndex = 0;
+            this.AcceptButton = btnStart;
+        }
+
+        void GoToPlayPage()
+        {
+            tabControl1.SelectedIndex = 1;
+            this.AcceptButton = btnPlay_Stop_Reset;
+        }
+
+        void GoToResultPage()
+        {
+            tabControl1.SelectedIndex = 2;
+            
+        }
+
         private void cbLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GameStatus.Level = (enLevel)((ComboBox)sender).SelectedIndex;
+            Game.Level = (enLevel)((ComboBox)sender).SelectedIndex;
             changeProgressBarValue();
         }
 
@@ -101,7 +508,7 @@ namespace Math_Game
 
         private void cbOperator_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GameStatus.Operator = (enOperator)((ComboBox)sender).SelectedIndex;
+            Game.Operator = (enOperator)((ComboBox)sender).SelectedIndex;
             changeProgressBarValue();
         }
 
@@ -112,7 +519,7 @@ namespace Math_Game
 
         private void nudRounds_ValueChanged(object sender, EventArgs e)
         {
-            GameStatus.Rounds = Convert.ToSByte(nudRounds.Value);
+            Game.Rounds = Convert.ToSByte(nudRounds.Value);
             changeProgressBarValue();
         }
 
@@ -126,12 +533,13 @@ namespace Math_Game
             if (!ValidateChildren())
                 return;
 
-            tabControl1.SelectedIndex = 1;
+            GoToPlayPage();
+            Reset();
         }
 
         private void nudTimePerQuestion_ValueChanged(object sender, EventArgs e)
         {
-            GameStatus.TimePerQuestion = Convert.ToSByte(nudTimePerQuestion.Value);
+            Game.TimePerQuestion = Convert.ToSByte(nudTimePerQuestion.Value);
             changeProgressBarValue();
         }
 
@@ -142,7 +550,90 @@ namespace Math_Game
 
         private void frmMathGame_Load(object sender, EventArgs e)
         {
+            nudTimePerQuestion.Value = 10;
             changeProgressBarValue();
+            tabControl1.ItemSize = new Size(0, 1);
+
+        }
+
+        private void btnPlayAndStop_Click(object sender, EventArgs e)
+        {
+            switch (Game.GameMode)
+            {
+                case enGameMode.Start:
+                    Play();
+                    break;
+
+                case enGameMode.Play:
+                    Stop();
+                    break;
+
+                case enGameMode.Stop:
+                    Resume();
+                    break;
+
+                case enGameMode.Reset:
+                    Reset();
+                    break;
+            }
+
+           
+        }
+
+        private void btnCheckAsnwer_Click(object sender, EventArgs e)
+        {
+            CheckAnswerButton();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Game.TimeLeft--;
+
+            ChangeTimeLeftLabel();
+
+            if (Game.TimeLeft == 0)
+            {
+                GameOver();
+            }
+        }
+
+        private void btnNextRound_Click(object sender, EventArgs e)
+        {
+
+            NextQuestion();
+        }
+
+        private void btnDonotKnow_Click(object sender, EventArgs e)
+        {
+            DonotKnow();
+        }
+
+        private void pbBack_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Are You Sure You Want To go back\nYou Will Lose Your Progress!","Confirm"
+                ,MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation,MessageBoxDefaultButton.Button2)
+                == DialogResult.OK)
+            {
+
+                GoToStartPage();
+            }
+        }
+
+        private void btnResult_Click(object sender, EventArgs e)
+        {
+            GoToResultPage();
+        }
+
+        private void txtAnswer_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
+            {
+                if (txtAnswer.Text.Length!=0 && !(txtAnswer.Text[0] == '-' || txtAnswer.Text[0] == '+'))
+                {
+                    e.Handled = true;
+                }
+            }          
+            
         }
     }
 }
