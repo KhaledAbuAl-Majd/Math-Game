@@ -79,6 +79,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtAnswer = new System.Windows.Forms.TextBox();
             this.tabResult = new System.Windows.Forms.TabPage();
+            this.lblResultFailTime = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lblResultWinTime = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lblResultOperator = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblResultLevel = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lblResultRound = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnBackToPlayPage = new System.Windows.Forms.Button();
             this.pbExit = new System.Windows.Forms.PictureBox();
             this.btnBackToStartPage = new System.Windows.Forms.Button();
@@ -86,16 +96,6 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblResultRound = new System.Windows.Forms.Label();
-            this.lblResultLevel = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.lblResultOperator = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblResultWinTime = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.lblResultFailTime = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabStart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -568,6 +568,76 @@
             resources.ApplyResources(this.tabResult, "tabResult");
             this.tabResult.Name = "tabResult";
             // 
+            // lblResultFailTime
+            // 
+            resources.ApplyResources(this.lblResultFailTime, "lblResultFailTime");
+            this.lblResultFailTime.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.lblResultFailTime.ForeColor = System.Drawing.Color.White;
+            this.lblResultFailTime.Name = "lblResultFailTime";
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.label16.ForeColor = System.Drawing.Color.White;
+            this.label16.Name = "label16";
+            // 
+            // lblResultWinTime
+            // 
+            resources.ApplyResources(this.lblResultWinTime, "lblResultWinTime");
+            this.lblResultWinTime.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.lblResultWinTime.ForeColor = System.Drawing.Color.White;
+            this.lblResultWinTime.Name = "lblResultWinTime";
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Name = "label14";
+            // 
+            // lblResultOperator
+            // 
+            resources.ApplyResources(this.lblResultOperator, "lblResultOperator");
+            this.lblResultOperator.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.lblResultOperator.ForeColor = System.Drawing.Color.White;
+            this.lblResultOperator.Name = "lblResultOperator";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Name = "label10";
+            // 
+            // lblResultLevel
+            // 
+            resources.ApplyResources(this.lblResultLevel, "lblResultLevel");
+            this.lblResultLevel.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.lblResultLevel.ForeColor = System.Drawing.Color.White;
+            this.lblResultLevel.Name = "lblResultLevel";
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Name = "label13";
+            // 
+            // lblResultRound
+            // 
+            resources.ApplyResources(this.lblResultRound, "lblResultRound");
+            this.lblResultRound.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.lblResultRound.ForeColor = System.Drawing.Color.White;
+            this.lblResultRound.Name = "lblResultRound";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Name = "label7";
+            // 
             // btnBackToPlayPage
             // 
             this.btnBackToPlayPage.BackColor = System.Drawing.Color.Transparent;
@@ -612,76 +682,6 @@
             // 
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Name = "label7";
-            // 
-            // lblResultRound
-            // 
-            resources.ApplyResources(this.lblResultRound, "lblResultRound");
-            this.lblResultRound.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.lblResultRound.ForeColor = System.Drawing.Color.White;
-            this.lblResultRound.Name = "lblResultRound";
-            // 
-            // lblResultLevel
-            // 
-            resources.ApplyResources(this.lblResultLevel, "lblResultLevel");
-            this.lblResultLevel.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.lblResultLevel.ForeColor = System.Drawing.Color.White;
-            this.lblResultLevel.Name = "lblResultLevel";
-            // 
-            // label13
-            // 
-            resources.ApplyResources(this.label13, "label13");
-            this.label13.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Name = "label13";
-            // 
-            // lblResultOperator
-            // 
-            resources.ApplyResources(this.lblResultOperator, "lblResultOperator");
-            this.lblResultOperator.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.lblResultOperator.ForeColor = System.Drawing.Color.White;
-            this.lblResultOperator.Name = "lblResultOperator";
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Name = "label10";
-            // 
-            // lblResultWinTime
-            // 
-            resources.ApplyResources(this.lblResultWinTime, "lblResultWinTime");
-            this.lblResultWinTime.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.lblResultWinTime.ForeColor = System.Drawing.Color.White;
-            this.lblResultWinTime.Name = "lblResultWinTime";
-            // 
-            // label14
-            // 
-            resources.ApplyResources(this.label14, "label14");
-            this.label14.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Name = "label14";
-            // 
-            // lblResultFailTime
-            // 
-            resources.ApplyResources(this.lblResultFailTime, "lblResultFailTime");
-            this.lblResultFailTime.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.lblResultFailTime.ForeColor = System.Drawing.Color.White;
-            this.lblResultFailTime.Name = "lblResultFailTime";
-            // 
-            // label16
-            // 
-            resources.ApplyResources(this.label16, "label16");
-            this.label16.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Name = "label16";
             // 
             // frmMathGame
             // 

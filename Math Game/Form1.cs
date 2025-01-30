@@ -446,6 +446,8 @@ namespace Math_Game
             lblRightAnswers.Text =null;
             lblPlayerAnswer.Text = null;
             txtAnswer.Clear();
+            lblNumber1.Text = "0";
+            lblNumber2.Text = "0";
             pbOperator.Image = Resources.question_mark_96;
         }
 
