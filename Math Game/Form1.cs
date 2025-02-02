@@ -620,7 +620,10 @@ namespace Math_Game
             if (Game.TimeLeft == 0)
             {
                 if (Game.ResumeMode == enResumeMode.AnswerTurn)
+                {
                     DonotKnow();
+                    GameOver();
+                }
                 else
                     GameOver();
             }
