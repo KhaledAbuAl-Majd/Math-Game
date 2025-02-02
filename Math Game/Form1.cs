@@ -262,7 +262,7 @@ namespace Math_Game
 
         void CheckGameOver()
         {
-            if (Game.Rounds == Game.CurrentRound)
+            if (Game.Rounds == Game.CurrentRound) 
                 GameOver();
         }
 
@@ -619,7 +619,10 @@ namespace Math_Game
 
             if (Game.TimeLeft == 0)
             {
-                GameOver();
+                if (Game.ResumeMode == enResumeMode.AnswerTurn)
+                    DonotKnow();
+                else
+                    GameOver();
             }
         }
 
@@ -656,6 +659,7 @@ namespace Math_Game
             {
                 if (txtAnswer.Text.Length!=0 && !(txtAnswer.Text[0] == '-' || txtAnswer.Text[0] == '+'))
                 {
+                    txtAnswer.Text = txtAnswer.Text.Remove(txtAnswer.TextLength-1);
                     e.Handled = true;
                 }
             }          
@@ -679,6 +683,11 @@ namespace Math_Game
             {
                 this.Close();
             }
+        }
+
+        private void txtAnswer_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

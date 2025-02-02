@@ -8,3 +8,8 @@ E:\Visual Studio\source\Projects\Course 14\P1-MathGame\Math Game\obj\Debug\Math 
 E:\Visual Studio\source\Projects\Course 14\P1-MathGame\Math Game\obj\Debug\Math Game.exe
 E:\Visual Studio\source\Projects\Course 14\P1-MathGame\Math Game\obj\Debug\Math Game.pdb
 E:\Visual Studio\source\Projects\Course 14\P1-MathGame\Math Game\obj\Debug\Math_Game.frmMathGame.resources
+E:\Visual Studio\source\Projects\Course 14\P1-MathGame\Math Game\bin\Debug\Math Game.exe.manifest
+E:\Visual Studio\source\Projects\Course 14\P1-MathGame\Math Game\bin\Debug\Math Game.application
+E:\Visual Studio\source\Projects\Course 14\P1-MathGame\Math Game\obj\Debug\Math Game.TrustInfo.xml
+E:\Visual Studio\source\Projects\Course 14\P1-MathGame\Math Game\obj\Debug\Math Game.exe.manifest
+E:\Visual Studio\source\Projects\Course 14\P1-MathGame\Math Game\obj\Debug\Math Game.application

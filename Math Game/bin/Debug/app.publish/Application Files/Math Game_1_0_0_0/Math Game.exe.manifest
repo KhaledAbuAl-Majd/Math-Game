@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="Math Game.exe" version="1.0.0.0" publicKeyToken="40e3e5b2693b41fe" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="chalkboard_icon-icons.com_54408.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Math Game" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="Math Game.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- UAC Manifest Options
+             If you want to change the Windows User Account Control level replace the 
+             requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            Specifying requestedExecutionLevel element will disable file and registry virtualization. 
+            Remove this element if your application requires this virtualization for backwards
+            compatibility.
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Math Game.exe" size="13301680">
+      <assemblyIdentity name="Math Game" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>TefIAU6S/37A8RAEXKIsafFd1PIlqzI8la4edFLmld0=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="chalkboard_icon-icons.com_54408.ico" size="62894">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>sjgOW1Nq5xTZp7OscG90H6+GhVvDzwOiypDs4n23lIU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Math Game.exe.config" size="189">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>R+Wg8QGvQVHX8T0ta/qbhH1bXkqY0fRnS3wBV3J0bN8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- A list of the Windows versions that this application has been tested on
+           and is designed to work with. Uncomment the appropriate elements
+           and Windows will automatically select the most compatible environment. -->
+      <!-- Windows Vista -->
+      <!--<supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}" />-->
+      <!-- Windows 7 -->
+      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}" />-->
+      <!-- Windows 8 -->
+      <!--<supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}" />-->
+      <!-- Windows 8.1 -->
+      <!--<supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}" />-->
+      <!-- Windows 10 -->
+      <!--<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />-->
+    </application>
+  </compatibility>
+<publisherIdentity name="CN=KHALED-D0\LOQ" issuerKeyHash="f997ea18359d664fbda44c38c5419bb2fbdc185a" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>0zz1LU2CQKgDaY6XzCYERHv+G6CQeNq15W/+8+aNYic=</DigestValue></Reference></SignedInfo><SignatureValue>ofZwFZiiVG572nRb63sPUzMJKdm12hUFqlphVqbxnyHpj16tpAVfqt++DjJJ3ojmTDRnTWJAQxOvfb3wM88RMLM1IINzubWncTlxv/GCNUchu+xB5OehMvK89nPVNsW8bsmNYE0cNFezmgktQGVBJlpYlB9qK8FAg36u3YKm+Iw=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>5K/orVSr2oS++byq6/xX6UvHogqu8RD/keHvT90Ixk80mxqwvXkzNCyaswD5ROcDJfiSu5E/sKVxSI/ErcmIWRGEGG3jdgLM968YdriLJgGCpYZdvCaxgnFXEsKH+ZQCxpn16Px8YfJcaKfTUluRjvIec9PD4YxIumJ5LvfxlEU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="27628de6f3fe6fe5b5da7890a01bfe7b440426cc978e6903a840824d2df53cd3" Description="" Url=""><as:assemblyIdentity name="Math Game.exe" version="1.0.0.0" publicKeyToken="40e3e5b2693b41fe" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=KHALED-D0\LOQ</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>JGQ7A/ysfSu1sAbv7PajVI6rFsxEYjI9cHSbLzRAhSg=</DigestValue></Reference></SignedInfo><SignatureValue>LtuecGlxRcPGeIZ92rnhQB9ImYS+vVSWKTVOa+GhOOGLL0gyKsYVzbD8k0PedRZPAmZ7uP1zc49YzoA1pi3nCt+Rcq1Sby75z3O5r1wBiQd6nLpKeTx36CoR0grtkZqbPs81jYi6sE8HoUmXKTaw7EjDYW5tHbArS3eLnzuxjfU=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>5K/orVSr2oS++byq6/xX6UvHogqu8RD/keHvT90Ixk80mxqwvXkzNCyaswD5ROcDJfiSu5E/sKVxSI/ErcmIWRGEGG3jdgLM968YdriLJgGCpYZdvCaxgnFXEsKH+ZQCxpn16Px8YfJcaKfTUluRjvIec9PD4YxIumJ5LvfxlEU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBzTCCATagAwIBAgIQGsHjj2I4HL1NZx98hmhalTANBgkqhkiG9w0BAQsFADAlMSMwIQYDVQQDHhoASwBIAEEATABFAEQALQBEADAAXABMAE8AUTAeFw0yNTAyMDIxNzM0NTBaFw0yNjAyMDIyMzM0NTBaMCUxIzAhBgNVBAMeGgBLAEgAQQBMAEUARAAtAEQAMABcAEwATwBRMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDkr+itVKvahL75vKrr/FfpS8eiCq7xEP+R4e9P3QjGTzSbGrC9eTM0LJqzAPlE5wMl+JK7kT+wpXFIj8StyYhZEYQYbeN2Asz3rxh2uIsmAYKlhl28JrGCcVcSwof5lALGmfXo/Hxh8lxop9NSW5GO8h5z08PhjEi6Ynku9/GURQIDAQABMA0GCSqGSIb3DQEBCwUAA4GBABGUgME1SPcoPIFJbmC+JZnolrtumV7k65pppQE2z+3x1e4Pg3UG4v2eM+O4RJqN2YvxDiJFckpsafS4Zc8TY23QALCDQvhcp8OxyuQueCZxSigmhQIh+hgfzEZ59aAXeTv17RJlCc7lfEUbZ7H9fe3fZjkOmlivxBFUUoLbImL7</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

@@ -546,6 +546,7 @@
             this.txtAnswer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             resources.ApplyResources(this.txtAnswer, "txtAnswer");
             this.txtAnswer.Name = "txtAnswer";
+            this.txtAnswer.TextChanged += new System.EventHandler(this.txtAnswer_TextChanged);
             this.txtAnswer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAnswer_KeyPress);
             // 
             // tabResult
